@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आणालिटिक | घोपे सर्विस सेंटर</title>
+    <link rel="stylesheet" href="./styles/createTask.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- bootstrap -->
+
+</head>
+
+<body>
+    <!-- container start -->
+    <div class="container">
+        <!-- left start -->
+        <div class="left">
+            <!-- header start -->
+            <header>
+                <!-- logo start -->
+                <div class="logo">
+                    <a href="./index.html"><img src="./favicon/ghope-removebg-preview.png" alt=""></a>
+                </div>
+                <!-- nav start -->
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="./dashboard.html">
+                                <span class="material-symbols-outlined full">
+                                    dashboard
+                                </span>
+                                <span class="title">वर्क पॅनल </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./createTask.html">
+                                <span class="material-symbols-outlined">
+                                    bar_chart
+                                </span>
+                                <span class="title">अनालिटिक</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./gridview.html">
+                                <span class="material-symbols-outlined">
+                                    table_chart
+                                </span>
+                                <span class="title">यादी</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./tableview.html">
+                                <span class="material-symbols-outlined">
+                                    table_view
+                                </span>
+                                <span class="title">टेबल</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./calendar.html">
+                                <span class="material-symbols-outlined">
+                                    calendar_month
+                                </span>
+                                <span class="title">कॅलेंडर </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- nav end -->
+            </header>
+            <!-- header end -->
+        </div>
+        <!-- left end -->
+        <!-- right start -->
+        <div class="right">
+            <!-- top start -->
+            <div class="top">
+                <!-- searchBx start -->
+                <div class="searchBx">
+                    <h2 id="project-name"></h2>
+                </div>
+                <!-- searchBx end -->
+                <!-- user start -->
+                <div class="user">
+                    <span class="material-symbols-outlined">
+                        notifications
+                    </span>
+                    <h2 id="username"> <br><span>User</span></h2>
+                    <div class="toggle">
+                        <span class="material-symbols-outlined">
+                            menu
+                        </span>
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                    </div>
+                </div>
+                <!-- user end -->
+            </div>
+            <!-- top end -->
+            <!-- main start -->
+            <main>
+                <!-- projectCard start -->
+                <div class="projectCard" style="max-width:100%;">
+                    <canvas id="myChart"></canvas>
+
+                </div>
+                <!-- projectCard end -->
+
+            </main>
+        </div>
+        <!-- right end -->
+    </div>
+    <!-- container end -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let projectName = document.querySelector('#project-name');
+        let submit = document.querySelector('#submit-project');
+        let close = document.querySelector('.close');
+        let username = document.getElementById("username")
+
+        console.log(localStorage.getItem("usernameid"))
+        username.innerText = localStorage.getItem("usernameid")
+
+        projectName.innerText = localStorage.getItem("projectName") + " : Analytics"
+
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            body.style.overflow = 'hidden';
+        });
+
+        // submit.addEventListener('click', ()=>{
+        //     console.log("clock")
+        //     localStorage.setItem("projectName", projectName.value)
+        // })
+        const onAdd = () => {
+            const payload = {
+                title: document.getElementById("title").value,
+                body: document.getElementById("body").value
+            }
+            console.log(payload)
+            fetch("https://wrike-clone-backend.onrender.com/todos/add", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                },
+                body: JSON.stringify(payload)
+            }).then(res => res.json())
+                .then(res => {
+                    console.log(res)
+                    Swal.fire({
+                        title: `${res.msg}`,
+                        text: 'Please go to Grid View or Table View!',
+                    })
+                })
+                .catch(err => console.log(err))
+        }
+
+
+        // start-----------------------------------
+
+        function createChart() {
+            fetch("https://wrike-clone-backend.onrender.com/todos", {
+                headers: {
+                    Authorization: localStorage.getItem("token"),
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    const labels = ["चालू", "होल्ड", "रिव्यू", "कंप्लीट"];
+                    const tasks = data;
+                    const counts = [
+                        tasks.filter((task) => task.status == "चालू").length,
+                        tasks.filter((task) => task.status == "होल्ड").length,
+                        tasks.filter((task) => task.status == "रिव्यू").length,
+                        tasks.filter((task) => task.status == "कंप्लीट").length
+                    ];
+                    const ctx = document.getElementById("myChart").getContext("2d");
+                    const chart = new Chart(ctx, {
+                        type: "bar",
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "कामांचा स्टेटस",
+                                    data: counts,
+                                    backgroundColor: [
+                                        "rgba(1, 200, 117, 0.9)",
+                                        "rgba(253, 171, 61, 0.9)",
+                                        "rgba(226, 68, 91, 0.9)",
+                                        "rgba(92, 163, 226, 0.9)"
+                                    ],
+                                    borderColor: [
+                                        "rgba(1, 200, 117, 1)",
+                                        "rgba(253, 171, 61, 1)",
+                                        "rgba(226, 68, 91, 1)",
+                                        "rgba(92, 163, 226, 1)"
+                                    ],
+                                    borderWidth: 1,
+                                },
+                            ],
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    
+                                },
+                            },
+                            barThickness: 130,
+                        },
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+        createChart();
+
+//  end--------------------------
+    </script>
+</body>
+
+</html>

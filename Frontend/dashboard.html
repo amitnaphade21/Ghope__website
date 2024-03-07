@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कामे </title>
+    <link rel="stylesheet" href="./styles/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="shortcut icon" href="./favicon/ghope-removebg-preview.png" type="image/x-icon">
+
+    <!-- bootstrap -->
+
+</head>
+
+<body>
+    <!-- container start -->
+    <div class="container">
+        <!-- left start -->
+        <div class="left">
+            <!-- header start -->
+            <header>
+                <!-- logo start -->
+                <div class="logo">
+                    <a href="./index.html"><img src="./favicon/ghope-removebg-preview.png" alt=""></a>
+                </div>
+                <!-- nav start -->
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="./dashboard.html">
+                                <span class="material-symbols-outlined full">
+                                    dashboard
+                                </span>
+                                <span class="title">वर्क पॅनल </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./createTask.html">
+                                <span class="material-symbols-outlined">
+                                    bar_chart
+                                </span>
+                                <span class="title">अनालिटिक </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./gridview.html">
+                                <span class="material-symbols-outlined">
+                                    table_chart
+                                </span>
+                                <span class="title">यादी</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./tableview.html">
+                                <span class="material-symbols-outlined">
+                                    table_view
+                                </span>
+                                <span class="title">टेबल</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./calendar.html">
+                                <span class="material-symbols-outlined">
+                                    calendar_month
+                                </span>
+                                <span class="title">कॅलेंडर </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- nav end -->
+            </header>
+            <!-- header end -->
+
+        </div>
+        <!-- left end -->
+        <!-- right start -->
+        <div class="right">
+            <!-- top start -->
+            <div class="top">
+                <!-- searchBx start -->
+                <div class="searchBx">
+                    <h2>कामांची यादी </h2>
+                </div>
+                <!-- searchBx end -->
+                <!-- user start -->
+                <div class="user">
+                    <span class="material-symbols-outlined">
+                        notifications
+                    </span>
+                    <h2 id="username"> <br><span>User</span></h2>
+                    <div class="toggle">
+                        <span class="material-symbols-outlined">
+                            menu
+                        </span>
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                    </div>
+                </div>
+                <!-- user end -->
+            </div>
+            <!-- top end -->
+            <!-- main start -->
+            <main>
+                <!-- projectCard start -->
+                <div class="projectCard">
+                    <div class="tasksHead">
+                        <h2>नाव</h2>
+                        <!-- <div class="tasksDots">
+                            <span class="material-symbols-outlined">
+                                more_horiz
+                            </span>
+                        </div> -->
+                        <div id="create-project">
+                            <input type="text" id="new-project-name" onfocus="this.value=''">
+                            <button id="submit-project">तयार करा</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- projectCard end -->
+                <!-- projectCard2 start -->
+                <div class="projectCard projectCard2">
+                    <div class="projectTop">
+                        <h2>नाव <br><span>काम </span></h2>
+                        <div class="projectDots">
+                            <span class="material-symbols-outlined">
+                                more_horiz
+                            </span>
+                        </div>
+                    </div>
+                    <div class="projectProgress">
+                        <div class="process">
+                            <h2>चालू आहे </h2>
+                        </div>
+                        <div class="priority">
+                            <h2>अर्जंट</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="task">
+                        <h2>काम झाले: <bold>35</bold> / 50</h2>
+                        <span class="line"></span>
+                    </div>
+                    <div class="due">
+                        <h2>कधिपर्यंत करणे : 25 August</h2>
+                    </div>
+                </div>
+                <!-- projectCard2 end -->
+                <!-- myTasks start -->
+                     <!-- ======================myTasks start ===================-->
+                <div class="myTasks" id="create-task">
+                    <!-- tasksHead start -->
+                    <div class="tasksHead">
+                        <h2>कामाची यादी तयार करा</h2>
+
+                        <div id="create-project">
+                            
+                            <input type="text" id="title" class="create-inputs" placeholder="काम" onfocus="this.value=''" required>
+
+                            <input type="text" id="body" class="create-inputs" placeholder="फॉल्ट" onfocus="this.value=''" maxlength="40" required>
+
+                            <input type="date" id="date" class="create-inputs">
+
+                            <button id="submit" onclick="onAdd()">अॅड  करा </button>
+                        </div>
+                    </div>
+
+                    <!-- tasksHead end -->
+                </div>
+                <!-- myTasks end -->
+                
+                <!-- calendar start -->
+                <div class="calendar">
+                    <!-- calendarHead start -->
+                    <div class="calendarHead">
+                        <h2>April 2023</h2>
+                        <div class="calendarIcon">
+                            <span class="material-symbols-outlined">
+                                chevron_left
+                            </span>
+                            <span class="material-symbols-outlined">
+                                chevron_right
+                            </span>
+                        </div>
+                    </div>
+                    <!-- calendarHead end -->
+                    <!-- calendarData start -->
+                    <div class="calendarData">
+                        <ul class="weeks">
+                            <li>Sun</li>
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                        </ul>
+                        <ul class="days">
+                            <li class="inactive">25</li>
+                            <li class="inactive">26</li>
+                            <li class="inactive">27</li>
+                            <li class="inactive">28</li>
+                            <li class="inactive">29</li>
+                            <li class="inactive">30</li>
+                            <li>1</li>
+                            <li>2</li>
+                            <li class="active">3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li>10</li>
+                            <li>11</li>
+                            <li>12</li>
+                            <li>13</li>
+                            <li>14</li>
+                            <li>15</li>
+                            <li>16</li>
+                            <li>17</li>
+                            <li>18</li>
+                            <li>19</li>
+                            <li>20</li>
+                            <li>21</li>
+                            <li>22</li>
+                            <li>23</li>
+                            <li>24</li>
+                            <li>25</li>
+                            <li>26</li>
+                            <li>27</li>
+                            <li>28</li>
+                            <li>29</li>
+
+                        </ul>
+                    </div>
+                    <!-- calendarData end -->
+                </div>
+                <!-- calendar end -->
+                
+            </main>
+            <!-- main end -->
+        </div>
+        <!-- right end -->
+    </div>
+    <!-- container end -->
+
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let projectName = document.querySelector('#new-project-name');
+        let submit = document.querySelector('#submit-project');
+        let close = document.querySelector('.close');
+        let username = document.getElementById("username")
+
+        console.log(localStorage.getItem("usernameid"))
+        username.innerText = localStorage.getItem("usernameid")
+
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            body.style.overflow = 'hidden';
+        });
+
+        submit.addEventListener('click', () => {
+
+            localStorage.setItem("projectName", projectName.value)
+            Swal.fire({
+                title: `${projectName.value} created`,
+                text: 'Please go to create task!',
+            })
+        })
+
+
+        // Create Task 
+        // submit.addEventListener('click', ()=>{
+        //     console.log("clock")
+        //     localStorage.setItem("projectName", projectName.value)
+        // })
+        const onAdd = ()=>{
+        const payload = {
+            title: document.getElementById("title").value,
+            body: document.getElementById("body").value,
+            date: document.getElementById("date").value,
+        }
+        console.log(payload)
+        fetch("https://wrike-clone-backend.onrender.com/todos/add",{
+            method: "POST",
+            headers:{
+                "Content-type":"application/json",
+                "Authorization":localStorage.getItem("token")
+            },
+            body: JSON.stringify(payload)
+        }).then(res=>res.json())
+        .then(res=>{
+            console.log(res)
+            Swal.fire({
+                title: `${res.msg}`,
+                text: 'Please go to Grid View or Table View!',
+            })
+        })
+        .catch(err => console.log(err))
+    }
+    </script>
+</body>
+
+</html>
