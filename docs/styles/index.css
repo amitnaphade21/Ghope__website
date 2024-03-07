@@ -49,7 +49,7 @@ a {
 .nav-toggle-close {
     font-size: 25px;
     position: absolute;
-    display: grid;
+    display: -ms-grid;
     place-items: center;
     cursor: pointer;
     transition: opacity .1s, transform .4s;
@@ -62,11 +62,11 @@ a {
 @media screen and (max-width: 1118px) {
     .nav-menu {
         position: absolute;
-        float: right;;
+        float: right;
         left: 0;
         top: 1.5rem;
         width: 100%;
-        height: calc(100vh - 3.5rem);
+        height: 20px;
         overflow: auto;
         padding-block: 1.5rem 4rem;
         pointer-events: none;
@@ -120,56 +120,13 @@ a {
     display: grid;
 }
 
-.dropdown-container {
-    background-color: rgb(237, 248, 245);
-    height: 0;
-    overflow: hidden;
-    transition: height .4s;
-}
 
-.dropdown-content {
-    row-gap: 1.75rem;
-}
-
-.dropdown-group {
-    padding-left: 2.5rem;
-    row-gap: .5rem;
-}
-
-.dropdown-group:first-child {
-    margin-top: 1.25rem;
-}
-
-.dropdown-group:last-child {
-    margin-bottom: 1.25rem;
-}
-
-.dropdown-name {
-    font-size: 14px;
-}
-
-/* .dropdown-div-cont{
-    margin: 10px 0px;
-} */
-
-.dropdown-div-cards {
-    display: flex;
-}
-
-.dropdown-div-cards:hover {
-    background-color: rgb(203, 231, 224);
-    border-radius: 10px;
-}
-
-.dropdown-icon {
-    margin: 20px 20px;
-}
 
 .nav-list2 {
     display: flex;
     align-items: right;
-    column-gap: 1.5rem;
-    color: rgb(100, 100, 100);
+    column-gap: 1rem;
+    color: white;
     font-size: 15px;
     font-weight: bold;
     justify-content: right;
@@ -185,17 +142,19 @@ a {
 .nav-list2 p:hover,
 .nav-list2 p:hover,
 .nav-list2 a:hover {
-    background-color: white;
+    background-color: navy;
     border-radius: 4px;
 }
 
 .nav-list2 button {
+    height:auto;
     box-sizing: border-box;
     font-size: 15px;
+    margin-top: 15  px;
     padding: 10px 17px;
     border: none;
     color: white;
-    background-color: whitesmoke;
+    background-color: navy;
     border-radius: 7px;
     cursor: pointer;
 }
@@ -204,36 +163,12 @@ a {
     background-color: rgb(0, 146, 12);
 }
 
-.dropdown-text-body h3 {
-    margin-bottom: 0;
-}
-
-.dropdown-text-body p {
-    margin-top: 5px;
-}
-
-.dropdown-list {
-    row-gap: 0.25rem;
-}
-
-.dropdown-link {
-    font-size: 15px;
-}
-
-.dropdown-link:hover {
-    color: rgb(0, 150, 110);
-}
-
-/* Rotate dropdown icon */
-.show-dropdown .dropdown-arrow {
-    transform: rotate(180deg);
-}
-
 /* =============== for small device ============== */
 @media screen and (max-width: 300px) {
     .dropdown-group {
         padding-left: 1.5rem;
     }
+
 }
 
 /* =============== for large device ============== */
@@ -254,26 +189,9 @@ a {
         justify-content: space-between;
         align-items: center;
     }
-
-    .nav-list1 {
-        display: flex;
-        align-items: center;
-        column-gap: 1.5rem;
-        height: 100%;
-    }
-
-    .nav-list2 {
-        display: flex;
-        column-gap: 1.5rem;
-        color: rgb(100, 100, 100);
-        height: 100%;
-        font-size: 15px;
-        font-weight: bold;
-        margin-right: 20px;
-        margin-top: 5px;
-    }
-
+    
     .nav-list2 button {
+        height:auto;
         box-sizing: border-box;
         font-size: 14px;
         padding: 10px 17px;
@@ -284,9 +202,6 @@ a {
 
     }
 
-    /* nav li{
-        display: flex;
-    } */
     .nav-link {
         padding: 5px 6px;
         border-radius: 4px;
@@ -339,7 +254,7 @@ a {
         row-gap: .75rem;
     }
 
-    /* .dropdown-icon{
+    .dropdown-icon{
         width: 60px;
         height: 60px;
         background-color: gray;
@@ -348,9 +263,6 @@ a {
         place-items: center;
         margin-bottom: 1rem;
     }
-    .dropdown-icon img{
-
-    } */
     .dropdown-item {
         cursor: pointer;
     }
@@ -373,10 +285,10 @@ a {
 }
 
 @media screen and (max-width: 1130px) {
-    .nav-list2 p,
-    .nav-list2 p,
+    .nav-list2 a,
+    .nav-list2 a,
     .nav-list2 a {
-        display: none;
+        display: flex;
     }
 }
 
@@ -551,29 +463,6 @@ a {
         display: flex;
         flex-direction: column;
     }
-}
-
-/* ====================== Main Body Video Card ====================== */
-#mid-body-video-cont{
-    display: flex;
-    width: 90%;
-    margin: auto;
-    align-items: center;
-}
-#mid-body-video-text,
-#mid-body-video-file{
-    width: 50%;
-}
-
-#mid-body-video-text h2,
-#mid-body-video-text p{
-    width: 70%;
-    margin-left: 5%;
-}
-
-#mid-body-video-file{
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 
